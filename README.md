@@ -1,2 +1,12 @@
 # reactive-examples
-Diferent modules with reactive flows + all modules connected
+Different modules with reactive flows + all modules connected
+
+
+## TODO
+### reactive+regular event module:  
+   - Controller
+   - Stores in DB
+   - process sleep 500ms (service)
+   - Publish on kafka with avro
+
+### reactive+regular spreader module
