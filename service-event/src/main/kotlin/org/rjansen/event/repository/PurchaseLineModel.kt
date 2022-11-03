@@ -5,12 +5,15 @@ import javax.persistence.Embeddable
 import javax.persistence.EmbeddedId
 import javax.persistence.Entity
 
-@Entity("PURCHASE_LINES")
-data class PurchaseLineModel(
+@Entity(name = "PURCHASE_LINES")
+class PurchaseLineModel {
     @EmbeddedId
-    var purchaseLineId: PurchaseLineId,
-    var quantity: Int
-) {
+    lateinit var purchaseLineId: PurchaseLineId
+    var quantity: Int = 0
+
     @Embeddable
-    data class PurchaseLineId(var purchaseId: String, var lineId: String) : Serializable
+    class PurchaseLineId : Serializable {
+        lateinit var purchaseId: String
+        lateinit var lineId: String
+    }
 }

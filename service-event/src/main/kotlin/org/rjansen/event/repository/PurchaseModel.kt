@@ -4,10 +4,10 @@ import javax.persistence.Entity
 import javax.persistence.Id
 
 @Entity(name = "PURCHASE")
-data class PurchaseModel(
+class PurchaseModel {
     @Id
-    var id: String,
-    var customerId: String,
-    var discount: Double,
-    var amount: Double
-)
+    lateinit var id: String
+    lateinit var customerId: String
+    var discount: Double = 0.0
+    var amount: Double = 0.0
+}
