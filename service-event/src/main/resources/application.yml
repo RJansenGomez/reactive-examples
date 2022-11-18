@@ -1,0 +1,3 @@
+external:
+  ms:
+    stock: "http://localhost:8091/api"

@@ -10,7 +10,8 @@ import reactor.core.scheduler.Schedulers
 @Service
 class PurchaseService(
     val stockRepository: StockRepository,
-    val purchaseRepository: PurchaseRepository) {
+    val purchaseRepository: PurchaseRepository
+) {
     fun storePurchase(monoPurchase: Mono<Purchase>) {
         monoPurchase.subscribe {
             Flux.fromIterable(it.products.entries)
@@ -23,10 +24,11 @@ class PurchaseService(
 
     private fun checkStock(entry: Pair<Int, Int>) {
         println("Checking stock for ${entry.first}")
-        val currentStock = stockRepository.getStock(entry.first)
-        if (currentStock < entry.second) {
-            println("Failing on ${entry.first}")
-            throw NotEnoughStock(entry.first, currentStock, entry.second)
+        stockRepository.getStock(entry.first).subscribe {
+            if (it.amountAvailable < entry.second) {
+                println("Failing on ${entry.first}")
+                throw NotEnoughStock(entry.first, it.amountAvailable, entry.second)
+            }
         }
     }
 
