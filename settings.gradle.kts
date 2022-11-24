@@ -1,6 +1,7 @@
 rootProject.name = "reactive-examples"
-include("service-event")
-include("service-spreader")
-include("stock-service")
-include("side-effect-2")
-include("side-effect-3")
+include("service-purchase")
+include("service-notifications")
+include("service-stock")
+include("service-billing")
+include("service-finance")
+include("tests")
